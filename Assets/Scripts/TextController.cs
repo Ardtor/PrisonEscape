@@ -5,7 +5,30 @@ using UnityEngine.UI;
 
 public class TextController : MonoBehaviour
 {
-    private enum States {cell,sheets_0,sheets_1, mirror, cell_mirror, lock_0,lock_1,freedom} // sets the various states available for the cell
+    private enum States // sets the various states available for the cell
+    {
+        cell,
+        sheets_0,
+        sheets_1,
+        mirror,
+        cell_mirror,
+        lock_0,
+        lock_1,
+        freedom,
+        stairs_0,
+        stairs_1,
+        stairs_2,
+        corridor_0,
+        corridor_1,
+        corridor_2,
+        corridor_3,
+        closet_door,
+        in_closet,
+        floor,
+        courtyard,
+        gameover
+
+    } 
     private States mystate; 
     public Text text; // makes the text available to everyone
 
@@ -18,44 +41,74 @@ public class TextController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {
-       /* the sheet you're lying on his threadbare and the walls are of stone and mortar, a imposing wooden door is set against" +
+	{
+	    /* the sheet you're lying on his threadbare and the walls are of stone and mortar, a imposing wooden door is set against" +
                         " the wall having seen better days but you realise you'd not be able to break it down without breaking something first */
         print(mystate);
-        if (mystate == States.cell)
-        {
-            State_Cell();
+	    switch (mystate)
+	    {
+	        case States.cell:
+	            State_Cell();
+	            break;
+	        case States.sheets_0:
+	            State_Sheets_0();
+	            break;
+	        case States.mirror:
+	            State_Mirror();
+	            break;
+	        case States.cell_mirror:
+	            State_Cell_Mirror();
+	            break;
+	        case States.lock_0:
+	            State_Lock_0();
+	            break;
+	        case States.lock_1:
+	            State_Lock_1();
+	            break;
+	        case States.sheets_1:
+	            State_Sheets_1();
+	            break;
+	        case States.stairs_0:
+	            State_stairs_0();
+                break;
+	        case States.stairs_1:
+	            State_stairs_1();
+	            break;
+	        case States.stairs_2:
+	            State_stairs_2();
+	            break;
+	        case States.corridor_0:
+	            State_Corridor_0();
+	            break;
+	        case States.corridor_1:
+	            State_Corridor_1();
+	            break;
+	        case States.corridor_2:
+	            State_Corridor_2();
+	            break;
+	        case States.corridor_3:
+	            State_Corridor_3();
+	            break;
+	        case States.closet_door:
+	            State_Closet_Door();
+	            break;
+	        case States.in_closet:
+	            State_In_Closet(); //oo err
+	            break;
+	        case States.floor:
+	            State_Floor();
+	            break;
+	        case States.courtyard:
+	            State_Courtyard();
+	            break;
+	        case States.freedom:
+	            State_Freedom();
+	            break;
+	        case States.gameover:
+	            State_GameOver();
+	            break;
         }
-        else if (mystate == States.sheets_0)
-        {
-            State_Sheets_0();
-        }
-        else if (mystate == States.mirror)
-        {
-            State_Mirror();
-        }
-        else if (mystate == States.cell_mirror)
-        {
-            State_Cell_Mirror();
-        }
-        else if (mystate == States.lock_0)
-        {
-            State_Lock_0();
-        }
-        else if (mystate == States.lock_1)
-        {
-            State_Lock_1();
-        }
-        else if (mystate == States.sheets_1)
-        {
-            State_Sheets_1();
-        }
-        else if (mystate == States.freedom)
-        {
-            State_Freedom();
-        }
-
-    }
+	}
 
     void State_Cell()
     {
@@ -176,4 +229,97 @@ public class TextController : MonoBehaviour
 
     }
 
+    void State_Lock_1()
+    {
+        text.text =
+            "You walk over to the door with the mirror in your hand, maybe if you angled the mirror you could see down the bar on the door?\n" +
+            "\n" +
+            "Press [R] to [R]eturn to looking at your cell\n" +
+            "Press [T] to [T]ry the mirror";
+
+
+        if (Input.GetKeyDown("r"))
+        {
+            mystate = States.cell_mirror;
+        }
+
+        if (Input.GetKeyDown("t"))
+        {
+            mystate = States.freedom;
+        }
+
+    }
+
+    void State_Freedom()
+    {
+        text.text =
+            "Angling the mirror you spot the bar on the door, stretching on your tip toes you catch it with your hand and tug for a few minutes as the bar squeals open " +
+            "success! However in your haste to get the door open you drop the mirror, cracks run down it and when you pick it up again it shatters in your hand. \n" +
+            "You push the door open and look about you, there's just your cell down here and a short corridor that ends in another room, at the other end a set of stairs" +
+            "something glints in the torch light half way down towards the other room\n" +
+            "Press [I] to [I]nspect the floor\n" +
+            "Press [A] to [A]pproach the door\n" +
+            "Press [H] to [H]ead towards the stairs";
+
+
+        if (Input.GetKeyDown("i"))
+        {
+            mystate = States.floor;
+        }
+
+        if (Input.GetKeyDown("a"))
+        {
+            mystate = States.closet_door;
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.stairs_0;
+        }
+    }
+
+    void State_Corridor_0()
+    {
+        text.text =
+            "You're standing back at the exit of your cell, the door standing wide open. The mirror \n" +
+            "You push the door open and look about you, there's just your cell down here and a short corridor that ends in another room, at the other end a set of stairs" +
+            "something glints in the torch light half way down towards the other room\n" +
+            "Press [I] to [I]nspect the floor\n" +
+            "Press [A] to [A]pproach the door\n" +
+            "Press [H] to [H]ead towards the stairs";
+
+
+        if (Input.GetKeyDown("i"))
+        {
+            mystate = States.floor;
+        }
+
+        if (Input.GetKeyDown("a"))
+        {
+            mystate = States.closet_door;
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.stairs_0;
+        }
+    }
+
+    void State_Floor()
+    {
+        text.text =
+            "Angling the mirror you spot the bar on the door, stretching on your tip toes you catch it with your hand and tug for a few minutes as the bar squeals open " +
+            "success!\n" +
+            "You push the door open and look about you, there's just your cell down here and a short corridor that ends in another room, at the other end a set of stairs" +
+            "something glints in the torch light half way down towards the other room\n" +
+            "Press [I] to [I]nspect the floor\n" +
+            "Press [A] to [A]pproach the door\n" +
+            "Press [H] to [H]ead towards the stairs";
+
+
+       if (Input.GetKeyDown("r"))
+        {
+            mystate = States.corridor_0;
+        }
+    }
 }
