@@ -17,7 +17,6 @@ public class TextController : MonoBehaviour
         freedom,
         stairs_0,
         stairs_1,
-        stairs_2,
         corridor_0,
         corridor_1,
         corridor_2,
@@ -74,9 +73,6 @@ public class TextController : MonoBehaviour
 	        case States.stairs_1:
 	            State_stairs_1();
 	            break;
-	        case States.stairs_2:
-	            State_stairs_2();
-	            break;
 	        case States.corridor_0:
 	            State_Corridor_0();
 	            break;
@@ -101,11 +97,11 @@ public class TextController : MonoBehaviour
 	        case States.courtyard:
 	            State_Courtyard();
 	            break;
+	        case States.gameover:
+	            State_Gameover();
+	            break;
 	        case States.freedom:
 	            State_Freedom();
-	            break;
-	        case States.gameover:
-	            State_GameOver();
 	            break;
         }
 	}
@@ -281,9 +277,8 @@ public class TextController : MonoBehaviour
     void State_Corridor_0()
     {
         text.text =
-            "You're standing back at the exit of your cell, the door standing wide open. The mirror \n" +
-            "You push the door open and look about you, there's just your cell down here and a short corridor that ends in another room, at the other end a set of stairs" +
-            "something glints in the torch light half way down towards the other room\n" +
+            "You're standing back at the exit of your cell, the door standing wide open. The mirror fallen on the floor is spread out in shards in front of it. \n" +
+            "Looking about you see something other than the glass glinting on the floor, to your south is a yet unopened door and to the north the stairs.\n "+
             "Press [I] to [I]nspect the floor\n" +
             "Press [A] to [A]pproach the door\n" +
             "Press [H] to [H]ead towards the stairs";
@@ -305,21 +300,67 @@ public class TextController : MonoBehaviour
         }
     }
 
-    void State_Floor()
+    void State_Corridor_1()
     {
         text.text =
-            "Angling the mirror you spot the bar on the door, stretching on your tip toes you catch it with your hand and tug for a few minutes as the bar squeals open " +
-            "success!\n" +
-            "You push the door open and look about you, there's just your cell down here and a short corridor that ends in another room, at the other end a set of stairs" +
-            "something glints in the torch light half way down towards the other room\n" +
-            "Press [I] to [I]nspect the floor\n" +
+            "You're standing back at the exit of your cell, the door standing wide open. The mirror fallen on the floor is spread out in shards in front of it. \n" +
+            "Looking about you see the door to your south, yet unexplored and to the north the stairs.\n " +
             "Press [A] to [A]pproach the door\n" +
             "Press [H] to [H]ead towards the stairs";
 
 
-       if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("a"))
+        {
+            mystate = States.in_closet;
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.stairs_0;
+        }
+    }
+
+    void State_Corridor_2()
+    {
+        text.text =
+            "You're standing back at the exit of your cell, the door standing wide open. The mirror fallen on the floor is spread out in shards in front of it. \n" +
+            "Looking about you see the open door to your south for the guards changing room and to the north the stairs.\n " +
+            "Press [E] to [E]nter the guards \n" +
+            "Press [H] to [H]ead towards the stairs";
+
+
+        if (Input.GetKeyDown("a"))
+        {
+            mystate = States.in_closet;
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.stairs_0;
+        }
+    }
+
+
+
+
+    void State_Floor()
+    {
+        text.text =
+            "You kneel down avoiding the shards of glass and see some fallen bobby pins, these could be useful. Maybe as a lock pick? You do know the art, even if it's been a while.\n" +
+            "Press [T] to [T]ake the bobby pins\n" +
+            "Press [R] to [R]eturn to the door and do nothing\n";
+
+
+       if (Input.GetKeyDown("t"))
+        {
+            mystate = States.corridor_1;
+        }
+
+        if (Input.GetKeyDown("r"))
         {
             mystate = States.corridor_0;
         }
     }
+
+
 }
