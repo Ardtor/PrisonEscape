@@ -38,6 +38,22 @@ public class TextController : MonoBehaviour
         {
             State_Cell_Mirror();
         }
+        else if (mystate == States.lock_0)
+        {
+            State_Lock_0();
+        }
+        else if (mystate == States.lock_1)
+        {
+            State_Lock_1();
+        }
+        else if (mystate == States.sheets_1)
+        {
+            State_Sheets_1();
+        }
+        else if (mystate == States.freedom)
+        {
+            State_Freedom();
+        }
 
     }
 
@@ -65,7 +81,7 @@ public class TextController : MonoBehaviour
             mystate = States.mirror;
         }
 
-        else if (Input.GetKeyDown("L"))
+        else if (Input.GetKeyDown("l"))
         {
             mystate = States.lock_0;
         }
@@ -110,7 +126,8 @@ public class TextController : MonoBehaviour
     {
         text.text =
             "You approach the imposing wooden door set into the the wall. Having seen better days, the door is rusted and worn with iron bars set into it that you can see the " +
-            "corridor outside through but you realise you'd not be able to break it down without breaking something important in your body, you spot a  \n" +
+            "corridor outside through but you realise you'd not be able to break it down without breaking something important in your body, you try to reach outside to move" +
+            "the deadbolt that's stopping the door but swinging your arm just leaves your shoulder tired.  \n" +
             "\n" +
             "Press [R] to [R]eturn to looking at your cell\n";
 
@@ -125,21 +142,38 @@ public class TextController : MonoBehaviour
     void State_Cell_Mirror()
     {
         text.text =
-            "You approach the mirror, it's been cleaned recently. Possibly by the sheets on the bed, it doesn't look to be mounted well against the wall possibly you could" +
-            "take it with you. \n" +
+            "With the mirror back in hand you return to the cell, looking about you still see the sheets from earlier, a dark patch on the wall shows where the mirror used " +
+            "to be. You can see the door from your current spot. \n" +
             "\n" +
-            "Press T to [T]ake the mirror from the wall\n" +
-            "Press [R] to [R]eturn to looking at your cell\n";
+            "Press [S] to view the [S]heets \n" +
+            "Press [L] to view the door and [L]ock\n";
 
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("s"))
         {
-            mystate = States.cell;
+            mystate = States.sheets_1;
         }
 
-        else if (Input.GetKeyDown("t"))
+        else if (Input.GetKeyDown("l"))
+        {
+            mystate = States.lock_1;
+        }
+
+    }
+
+    void State_Sheets_1()
+    {
+        text.text =
+            "You walk over to the sheets and attempt to direct the light from outside the door onto them to start a fire, maybe if you found a magnifying glass?\n" +
+            "(Hint: There isn't any reason to be here)" +
+            "\n" +
+            "Press [R] to [R]eturn to looking at your cell\n";
+
+
+        if (Input.GetKeyDown("r"))
         {
             mystate = States.cell_mirror;
         }
 
     }
+
 }
