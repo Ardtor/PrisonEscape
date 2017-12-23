@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework.Interfaces;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class TextController : MonoBehaviour
 {
-    private enum States {cell,sheets_0,sheets_1, mirror, cell_mirror, lock_0,lock_1,freedom}
-    private States mystate;
-    public Text text;
+    private enum States {cell,sheets_0,sheets_1, mirror, cell_mirror, lock_0,lock_1,freedom} // sets the various states available for the cell
+    private States mystate; 
+    public Text text; // makes the text available to everyone
 
 
 	// Use this for initialization
@@ -32,6 +30,15 @@ public class TextController : MonoBehaviour
         {
             State_Sheets_0();
         }
+        else if (mystate == States.mirror)
+        {
+            State_Mirror();
+        }
+        else if (mystate == States.cell_mirror)
+        {
+            State_Cell_Mirror();
+        }
+
     }
 
     void State_Cell()
@@ -53,12 +60,22 @@ public class TextController : MonoBehaviour
             mystate = States.sheets_0;
         }
 
+        else if (Input.GetKeyDown("m"))
+        {
+            mystate = States.mirror;
+        }
+
+        else if (Input.GetKeyDown("L"))
+        {
+            mystate = States.lock_0;
+        }
+
     }
 
     void State_Sheets_0()
     {
         text.text =
-            "Looking at the state of the sheets you're suprised you didn't catch anything from the, they're yellow and covered in stains of blood and other..things.\n" +
+            "Looking at the state of the sheets you're suprised you didn't catch anything from them, they're yellow and covered in stains of blood and other..things.\n" +
             "\n" +
             "Press [R] to [R]eturn to looking at your cell\n";
 
@@ -66,5 +83,63 @@ public class TextController : MonoBehaviour
         {
             mystate = States.cell;
         }
+    }
+
+    void State_Mirror()
+    {
+        text.text =
+            "You approach the mirror, it's been cleaned recently. Possibly by the sheets on the bed, it doesn't look to be mounted well against the wall possibly you could" +
+            "take it with you. \n" +
+            "\n" +
+            "Press T to [T]ake the mirror from the wall\n" +
+            "Press [R] to [R]eturn to looking at your cell\n";
+
+        if (Input.GetKeyDown("r"))
+        {
+            mystate = States.cell;
+        }
+
+        else if (Input.GetKeyDown("t"))
+        {
+            mystate = States.cell_mirror;
+        }
+
+    }
+
+    void State_Lock_0()
+    {
+        text.text =
+            "You approach the imposing wooden door set into the the wall. Having seen better days, the door is rusted and worn with iron bars set into it that you can see the " +
+            "corridor outside through but you realise you'd not be able to break it down without breaking something important in your body, you spot a  \n" +
+            "\n" +
+            "Press [R] to [R]eturn to looking at your cell\n";
+
+        if (Input.GetKeyDown("r"))
+        {
+            mystate = States.cell;
+        }
+    }
+
+
+
+    void State_Cell_Mirror()
+    {
+        text.text =
+            "You approach the mirror, it's been cleaned recently. Possibly by the sheets on the bed, it doesn't look to be mounted well against the wall possibly you could" +
+            "take it with you. \n" +
+            "\n" +
+            "Press T to [T]ake the mirror from the wall\n" +
+            "Press [R] to [R]eturn to looking at your cell\n";
+
+        if (Input.GetKeyDown("r"))
+        {
+            mystate = States.cell;
+        }
+
+        else if (Input.GetKeyDown("t"))
+        {
+            mystate = States.cell_mirror;
+        }
+
     }
 }
