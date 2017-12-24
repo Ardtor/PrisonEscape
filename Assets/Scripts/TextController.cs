@@ -33,7 +33,7 @@ public class TextController : MonoBehaviour
     } 
     private States mystate; 
     public Text text; // makes the text available to everyone
-    public Text GameOverText;
+    public Text test1;
     public int GameStateOver = 0;
 
 
@@ -116,6 +116,7 @@ public class TextController : MonoBehaviour
 
     void State_Cell()
     {
+        test1.text = "";
         text.text =
             "A small bright light pierces your eyelids, a small cackling follows as you groan. \n ''Oh my it's already awake'' you hear it hiss. \n Followed by the " +
             "sound of a clanking door. The lock grates and rings in your ears as you try to sit up. Throat dry you cast about the room looking for the " +
@@ -502,23 +503,9 @@ public class TextController : MonoBehaviour
             "A piercing hiss reaches you from behind ''You will <i>never</i> leave me my pretty, <b>never again</b>. You broke my heart once and it'll never happen again''\n" +
             "You scream in fustration as everything fades to black once again\n" +
             "\n" +
-            "\n" +
-            "<center><B><size=50>GAME OVER</size></B></center>";
-        GameOverText.text = "<B><size=75>GAME OVER</size></B>";
-
-        GameStateOver = GameStateOver + 1;
-
-
-
-        if (GameStateOver <= 3)
-        {
-            mystate = States.cell;
-        }
-
-        else if (GameStateOver == 3)
-        {
-            mystate = States.gameover;
-        }
+            "\n";
+            
+        test1.text = "<B><size=75>GAME OVER</size></B>";
     }
 
 
