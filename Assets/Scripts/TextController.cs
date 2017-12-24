@@ -17,6 +17,7 @@ public class TextController : MonoBehaviour
         freedom,
         stairs_0,
         stairs_1,
+        stairs_2,
         corridor_0,
         corridor_1,
         corridor_2,
@@ -68,12 +69,15 @@ public class TextController : MonoBehaviour
 	            State_Sheets_1();
 	            break;
 	        case States.stairs_0:
-	            State_stairs_0();
+	            State_Stairs_0();
                 break;
 	        case States.stairs_1:
-	            State_stairs_1();
+	            State_Stairs_1();
 	            break;
-	        case States.corridor_0:
+	        case States.stairs_2:
+	            State_Stairs_2();
+	            break;
+            case States.corridor_0:
 	            State_Corridor_0();
 	            break;
 	        case States.corridor_1:
@@ -88,18 +92,18 @@ public class TextController : MonoBehaviour
 	        case States.closet_door:
 	            State_Closet_Door();
 	            break;
-	        case States.in_closet:
-	            State_In_Closet(); //oo err
-	            break;
+	        //case States.in_closet:
+	        //    State_In_Closet(); //oo err
+	        //    break;
 	        case States.floor:
 	            State_Floor();
 	            break;
-	        case States.courtyard:
-	            State_Courtyard();
-	            break;
-	        case States.gameover:
-	            State_Gameover();
-	            break;
+	        //case States.courtyard:
+	        //    State_Courtyard();
+	        //    break;
+	        //case States.gameover:
+	        //    State_Gameover();
+	        //    break;
 	        case States.freedom:
 	            State_Freedom();
 	            break;
@@ -316,7 +320,7 @@ public class TextController : MonoBehaviour
 
         if (Input.GetKeyDown("h"))
         {
-            mystate = States.stairs_0;
+            mystate = States.stairs_2;
         }
     }
 
@@ -324,8 +328,8 @@ public class TextController : MonoBehaviour
     {
         text.text =
             "You're standing back at the exit of your cell, the door standing wide open. The mirror fallen on the floor is spread out in shards in front of it. \n" +
-            "Looking about you see the open door to your south for the guards changing room and to the north the stairs.\n " +
-            "Press [E] to [E]nter the guards \n" +
+            "Looking about you see the open door to your south for the guards barracks room and to the north the stairs.\n " +
+            "Press [E] to [E]nter the guards barracks\n" +
             "Press [H] to [H]ead towards the stairs";
 
 
@@ -336,10 +340,86 @@ public class TextController : MonoBehaviour
 
         if (Input.GetKeyDown("h"))
         {
-            mystate = States.stairs_0;
+            mystate = States.stairs_1;
         }
     }
 
+    void State_Corridor_3()
+    {
+        text.text =
+            "You're done everything you can now to insure your success, time to put it to the test \n" +
+            "\n " +
+            "Press [H] to [H]ead towards the stairs";
+
+
+       if (Input.GetKeyDown("h"))
+        {
+            mystate = States.courtyard;
+        }
+    }
+
+    void State_Stairs_0()
+    {
+        text.text =
+            "You slowly approach the stairs they circle up in a tight circle, they're well worn with time and a groove is made in the middle from all the people going up and down," +
+            " the flames on the torches flicker threatening to plug you into darkness.\n\n" +
+            "You creep to the top and look out, the darkness threatens to swamp you as you start to creep forward, but a noise stops you mid stride.\n" +
+            "*Zzzzzzzzz, Zzzzzzz*\n" +
+            "It's a sleeping guard, you sigh in relief you can easily slip past the tired guard but notice that there's several lights moving around in the courtyard. More guards? Maybe risking it now is a bad " +
+            "idea\n" +
+            "Press [H] to [H]ead down the stairs";
+
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.corridor_0;
+        }
+    }
+
+    void State_Stairs_1()
+    {
+        text.text =
+            "You head back up the stairs, maybe the guard has moved on? You peer around the corner the guard is awake! You quickly hide back around the corner, you're going to need a way to get across without" +
+            "being challenged. Maybe the room downstairs has something to use\n" +
+            "\n " +
+            "Press [H] to [H]ead towards the stairs";
+
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.corridor_2;
+        }
+    }
+
+    void State_Stairs_2()
+    {
+        text.text =
+            "The guard is still asleep, the light's are wandering closer to the entrance, you dart backwards quickly.\n" +
+            "\n " +
+            "Press [H] to [H]ead towards the stairs";
+
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.corridor_1;
+        }
+    }
+
+    void State_Closet_Door()
+    {
+        text.text =
+            "You head towards the door, twisting the handle it stops part way. Looks to be locked, it's a sturdy door and the chance of you breaking it down would lead to far to much noise. You" +
+            " look through the keyhole to see inside, it looks to be a guard barracks. Maybe you can find a weapon or something to help you out inside there but you'll need something to try picking the" +
+            "lock with\n" +
+            "\n " +
+            "Press [R] to [R]eturn return to the corridor";
+
+
+        if (Input.GetKeyDown("h"))
+        {
+            mystate = States.corridor_1;
+        }
+    }
 
 
 
